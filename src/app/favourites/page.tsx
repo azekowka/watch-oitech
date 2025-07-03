@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Header from '@/components/common/header';
 import Sidebar from '@/components/common/sidebar';
+import PageWrapper from '@/components/common/page-wrapper';
 
 interface FavoriteItem {
   id: string;
@@ -71,10 +71,8 @@ const FavouritesPage: React.FC = () => {
 
       {/* Main Content */}
       <div className="flex flex-col gap-1.5 justify-start items-center flex-1 w-full lg:w-auto">
-        <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
-          {/* Header */}
-          <Header className="w-full mb-6 sm:mb-8 lg:mb-10" />
-          
+        <PageWrapper>
+        <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 pt-6 pb-6 sm:pb-8 lg:pb-10">
           {/* Page Title */}
           <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold font-poppins leading-8 text-left text-white mb-6 sm:mb-8 lg:mb-10">
             Favourites
@@ -148,6 +146,7 @@ const FavouritesPage: React.FC = () => {
             </div>
           )}
         </div>
+        </PageWrapper>
       </div>
     </div>
   );

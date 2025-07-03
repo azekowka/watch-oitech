@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
-import Header from '@/components/common/header';
+import PageWrapper from '@/components/common/page-wrapper';
 import Sidebar from '@/components/common/sidebar';
+import Header from '@/components/common/header';
+
 interface MovieCard {
   id: number;
   title: string;
@@ -118,133 +120,134 @@ const HomePage: React.FC = () => {
       )}
       {/* Main Content */}
       <div className="flex flex-col gap-1.5 justify-start items-center flex-1 w-full lg:w-auto">
-        {/* Hero Section */}
-        <div 
-          className="flex flex-row justify-start items-center w-full bg-cover bg-center bg-no-repeat pt-10 pb-10"
-          style={{ backgroundImage: "url('/images/img_rectangle_201.png')" }}
-        >
-          <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 mb-3">
-            {/* Header */}
-            <Header className="w-full mr-2.5" />
-            {/* Hero Content */}
-            <div className="flex flex-col justify-start items-start w-full mt-32 sm:mt-24 lg:mt-32">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-semibold leading-tight lg:leading-[72px] text-left text-[#ffffff] mb-4">
-                Insider
-              </h1>
-              <p className="text-sm font-poppins font-normal leading-5 text-left text-[#ffffff] mb-8">
-                2022 | Comedy horror | 1 Season
-              </p>
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center w-full gap-4">
-                <Button
-                  onClick={handleWatchNow}
-                  variant="primary"
-                  size="lg"
-                  className="bg-[#6100c2] text-white rounded-[14px] px-6 py-3"
-                >
-                  Watch now
-                </Button>
-                <button
-                  onClick={handleAddToFavorites}
-                  className="flex items-center justify-center w-[54px] h-[54px] bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border border-[linear-gradient(326deg,#ffffff_0%,#ffffff00_100%)] rounded-[14px] shadow-[0px_4px_20px_#888888ff] transition-all duration-200 hover:scale-110"
-                  aria-label="Add to favorites"
-                >
-                  <Image
-                    src="/images/img_heart_deep_purple_a700.svg"
-                    alt="Add to favorites"
-                    width={24}
-                    height={24}
-                    className="w-6 h-6"
-                  />
-                </button>
+        <PageWrapper showHeader={false}>
+          {/* Hero Section */}
+          <div 
+            className="flex flex-row justify-start items-center w-full bg-cover bg-center bg-no-repeat pt-0 pb-10"
+            style={{ backgroundImage: "url('/images/img_rectangle_201.png')" }}
+          >
+            <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 mb-3 relative">
+              <Header className="absolute top-0 left-0 w-full flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 z-10" />
+              {/* Hero Content */}
+              <div className="flex flex-col justify-start items-start w-full mt-32 sm:mt-24 lg:mt-32">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-semibold leading-tight lg:leading-[72px] text-left text-[#ffffff] mb-4">
+                  Insider
+                </h1>
+                <p className="text-sm font-poppins font-normal leading-5 text-left text-[#ffffff] mb-8">
+                  2022 | Comedy horror | 1 Season
+                </p>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center w-full gap-4">
+                  <Button
+                    onClick={handleWatchNow}
+                    variant="primary"
+                    size="lg"
+                    className="bg-[#6100c2] text-white rounded-[14px] px-6 py-3"
+                  >
+                    Watch now
+                  </Button>
+                  <button
+                    onClick={handleAddToFavorites}
+                    className="flex items-center justify-center w-[54px] h-[54px] bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border border-[linear-gradient(326deg,#ffffff_0%,#ffffff00_100%)] rounded-[14px] shadow-[0px_4px_20px_#888888ff] transition-all duration-200 hover:scale-110"
+                    aria-label="Add to favorites"
+                  >
+                    <Image
+                      src="/images/img_heart_deep_purple_a700.svg"
+                      alt="Add to favorites"
+                      width={24}
+                      height={24}
+                      className="w-6 h-6"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        {/* Content Sections */}
-        <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 mr-8 sm:mr-10 lg:mr-11">
-          {/* Trending Section */}
-          <div className="flex flex-col gap-4 justify-start items-start w-full">
-            <h2 className="text-xl font-poppins font-semibold leading-7 text-left text-[#ffffff]">
-              Trending
-            </h2>
-            {/* Trending Movies Grid */}
-            <div className="flex flex-row gap-4 sm:gap-6 w-full overflow-x-auto pb-4">
-              {trendingMovies.map((movie) => (
-                <div key={movie.id} className="flex-shrink-0 w-64 sm:w-[254px]">
-                  <div className="relative w-full h-[300px] rounded-[20px] overflow-hidden">
-                    <Image
-                      src={movie.image}
-                      alt={movie.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 256px, 254px"
-                    />
-                    {/* Favorite Button */}
-                    <button
-                      onClick={() => toggleFavorite(movie.id, 'trending')}
-                      className="absolute top-5 right-5 w-8 h-8 bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border-0 rounded-lg shadow-[0px_4px_11px_#888888ff] flex items-center justify-center transition-all duration-200 hover:scale-110"
-                      aria-label={movie.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    >
+          {/* Content Sections */}
+          <div className="flex flex-col justify-start items-start w-full px-4 sm:px-6 lg:px-8 mr-8 sm:mr-10 lg:mr-11">
+            {/* Trending Section */}
+            <div className="flex flex-col gap-4 justify-start items-start w-full">
+              <h2 className="text-xl font-poppins font-semibold leading-7 text-left text-[#ffffff]">
+                Trending
+              </h2>
+              {/* Trending Movies Grid */}
+              <div className="flex flex-row gap-4 sm:gap-6 w-full overflow-x-auto pb-4">
+                {trendingMovies.map((movie) => (
+                  <div key={movie.id} className="flex-shrink-0 w-64 sm:w-[254px]">
+                    <div className="relative w-full h-[300px] rounded-[20px] overflow-hidden">
                       <Image
-                        src={movie.isFavorite ? "/images/img_vector.svg" : "/images/img_frame_6.svg"}
-                        alt="Favorite"
-                        width={16}
-                        height={16}
-                        className="w-4 h-4"
+                        src={movie.image}
+                        alt={movie.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 256px, 254px"
                       />
-                    </button>
-                    {/* Movie Info */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-[linear-gradient(148deg,#fffffff2_0%,#fffffff2_100%)] rounded-b-[20px] p-4 shadow-[0px_4px_20px_#888888ff]">
-                      <h3 className="text-base font-poppins font-semibold leading-6 text-left text-[#000000] mb-1">
-                        {movie.title}
-                      </h3>
-                      <p className="text-sm font-poppins font-normal leading-5 text-left text-[#000000]">
-                        {movie.year} | {movie.genre}
-                      </p>
+                      {/* Favorite Button */}
+                      <button
+                        onClick={() => toggleFavorite(movie.id, 'trending')}
+                        className="absolute top-5 right-5 w-8 h-8 bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border-0 rounded-lg shadow-[0px_4px_11px_#888888ff] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                        aria-label={movie.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                      >
+                        <Image
+                          src={movie.isFavorite ? "/images/img_vector.svg" : "/images/img_frame_6.svg"}
+                          alt="Favorite"
+                          width={16}
+                          height={16}
+                          className="w-4 h-4"
+                        />
+                      </button>
+                      {/* Movie Info */}
+                      <div className="absolute bottom-0 left-0 right-0 bg-[linear-gradient(148deg,#fffffff2_0%,#fffffff2_100%)] rounded-b-[20px] p-4 shadow-[0px_4px_20px_#888888ff]">
+                        <h3 className="text-base font-poppins font-semibold leading-6 text-left text-[#000000] mb-1">
+                          {movie.title}
+                        </h3>
+                        <p className="text-sm font-poppins font-normal leading-5 text-left text-[#000000]">
+                          {movie.year} | {movie.genre}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-          {/* Continue Watching Section */}
-          <div className="flex flex-col justify-start items-start w-full mt-8">
-            <h2 className="text-xl font-poppins font-semibold leading-7 text-left text-[#ffffff] mb-4">
-              Continue watching
-            </h2>
-            {/* Continue Watching Grid */}
-            <div className="flex flex-row gap-4 sm:gap-6 w-full overflow-x-auto pb-4">
-              {continueWatching.map((item) => (
-                <div key={item.id} className="flex-shrink-0 w-80 sm:w-[348px]">
-                  <div className="relative w-full h-52 rounded-[20px] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt="Continue watching"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 320px, 348px"
-                    />
-                    {/* Favorite Button */}
-                    <button
-                      onClick={() => toggleFavorite(item.id, 'continue')}
-                      className="absolute top-5 right-5 w-8 h-8 bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border-0 rounded-lg shadow-[0px_4px_11px_#888888ff] flex items-center justify-center transition-all duration-200 hover:scale-110"
-                      aria-label={item.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-                    >
+            {/* Continue Watching Section */}
+            <div className="flex flex-col justify-start items-start w-full mt-8">
+              <h2 className="text-xl font-poppins font-semibold leading-7 text-left text-[#ffffff] mb-4">
+                Continue watching
+              </h2>
+              {/* Continue Watching Grid */}
+              <div className="flex flex-row gap-4 sm:gap-6 w-full overflow-x-auto pb-4">
+                {continueWatching.map((item) => (
+                  <div key={item.id} className="flex-shrink-0 w-80 sm:w-[348px]">
+                    <div className="relative w-full h-52 rounded-[20px] overflow-hidden">
                       <Image
-                        src={item.isFavorite ? "/images/img_vector.svg" : "/images/img_frame_6.svg"}
-                        alt="Favorite"
-                        width={16}
-                        height={16}
-                        className="w-4 h-4"
+                        src={item.image}
+                        alt="Continue watching"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 320px, 348px"
                       />
-                    </button>
+                      {/* Favorite Button */}
+                      <button
+                        onClick={() => toggleFavorite(item.id, 'continue')}
+                        className="absolute top-5 right-5 w-8 h-8 bg-[linear-gradient(146deg,#ffffff_0%,#ffffff00_100%)] border-0 rounded-lg shadow-[0px_4px_11px_#888888ff] flex items-center justify-center transition-all duration-200 hover:scale-110"
+                        aria-label={item.isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                      >
+                        <Image
+                          src={item.isFavorite ? "/images/img_vector.svg" : "/images/img_frame_6.svg"}
+                          alt="Favorite"
+                          width={16}
+                          height={16}
+                          className="w-4 h-4"
+                        />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </PageWrapper>
       </div>
     </div>
   );
