@@ -41,8 +41,8 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
         h-screen 
         flex 
         flex-col 
-        pt-9 
-        gap-14 
+        pt-6 
+        gap-8 
         ${className}
       `.trim().replace(/\s+/g, ' ')}
       role="navigation"
@@ -58,75 +58,77 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
       </div>
 
       {/* Menu Items */}
-      <nav className="flex flex-col flex-1">
-        {/* Main Menu */}
-        <div className="flex flex-col">
-          {menuItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => handleMenuClick(item.name)}
-              className={`
-                flex 
-                items-center 
-                w-full 
-                px-4 
-                py-4 
-                transition-all 
-                duration-200 
-                hover:bg-white/10 
-                ${activeMenuItem === item.name ? 'bg-white/10' : ''}
-              `.trim().replace(/\s+/g, ' ')}
-              role="menuitem"
-            >
-              <Image
-                src={item.icon}
-                alt={`${item.name} icon`}
-                width={24}
-                height={24}
-                className="w-6 h-6 ml-6"
-              />
-              <span className="text-base font-poppins font-normal leading-6 text-left text-[#ffffffcc] ml-3">
-                {item.name}
-              </span>
-            </button>
-          ))}
+      <nav className="flex flex-col flex-1 justify-between">
+        <div className="flex flex-col space-y-4">
+          {/* Main Menu */}
+          <div className="flex flex-col">
+            {menuItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleMenuClick(item.name)}
+                className={`
+                  flex 
+                  items-center 
+                  w-full 
+                  px-4 
+                  py-3 
+                  transition-all 
+                  duration-200 
+                  hover:bg-white/10 
+                  ${activeMenuItem === item.name ? 'bg-white/10' : ''}
+                `.trim().replace(/\s+/g, ' ')}
+                role="menuitem"
+              >
+                <Image
+                  src={item.icon}
+                  alt={`${item.name} icon`}
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 ml-6"
+                />
+                <span className="text-base font-poppins font-normal leading-6 text-left text-[#ffffffcc] ml-3">
+                  {item.name}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Community Section */}
+          <div className="flex flex-col mt-8">
+            {communityItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => handleMenuClick(item.name)}
+                className={`
+                  flex 
+                  items-center 
+                  w-full 
+                  px-4 
+                  py-3 
+                  transition-all 
+                  duration-200 
+                  hover:bg-white/10 
+                  ${activeMenuItem === item.name ? 'bg-white/10' : ''}
+                `.trim().replace(/\s+/g, ' ')}
+                role="menuitem"
+              >
+                <Image
+                  src={item.icon}
+                  alt={`${item.name} icon`}
+                  width={24}
+                  height={24}
+                  className="w-6 h-6 ml-6"
+                />
+                <span className="text-base font-poppins font-normal leading-6 text-left text-[#ffffffcc] ml-3">
+                  {item.name}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Community Section */}
-        <div className="flex flex-col mt-24">
-          {communityItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={() => handleMenuClick(item.name)}
-              className={`
-                flex 
-                items-center 
-                w-full 
-                px-4 
-                py-4 
-                transition-all 
-                duration-200 
-                hover:bg-white/10 
-                ${activeMenuItem === item.name ? 'bg-white/10' : ''}
-              `.trim().replace(/\s+/g, ' ')}
-              role="menuitem"
-            >
-              <Image
-                src={item.icon}
-                alt={`${item.name} icon`}
-                width={24}
-                height={24}
-                className="w-6 h-6 ml-6"
-              />
-              <span className="text-base font-poppins font-normal leading-6 text-left text-[#ffffffcc] ml-3">
-                {item.name}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Settings Section */}
-        <div className="flex flex-col mt-56">
+        {/* Settings Section - Bottom of sidebar */}
+        <div className="flex flex-col mb-8">
           {settingsItems.map((item) => (
             <button
               key={item.name}
@@ -136,7 +138,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                 items-center 
                 w-full 
                 px-4 
-                py-4 
+                py-3 
                 transition-all 
                 duration-200 
                 hover:bg-white/10 
