@@ -42,7 +42,7 @@ const FavouritesPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-row justify-start items-start w-full bg-[linear-gradient(358deg,#37302a_0%,#191817_50%,#191817_100%)]">
+    <div className="flex flex-row justify-start items-start w-full min-h-screen lg:pl-[274px] bg-[linear-gradient(358deg,#37302a_0%,#191817_50%,#191817_100%)]">
       {/* Mobile Hamburger Menu */}
       <button 
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#21201e] rounded-md"
@@ -57,7 +57,7 @@ const FavouritesPage: React.FC = () => {
       </button>
 
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'block' : 'hidden'} lg:block fixed lg:relative z-40 lg:z-auto`}>
+      <div className={`${sidebarOpen ? 'block' : 'hidden'} lg:block fixed top-0 left-0 h-full z-40`}>
         <Sidebar />
       </div>
 
