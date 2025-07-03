@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Button from '@/components/ui/button';
+import { WatchLogo } from '@/components/watch-logo';
 
 const WelcomePage: React.FC = () => {
   const handleLoginClick = () => {
@@ -72,36 +73,15 @@ const WelcomePage: React.FC = () => {
             items-center 
             w-auto
           ">
-            <Image
-              src="/images/img_coffee.svg"
-              alt="WATCH Logo"
-              width={32}
-              height={32}
+            <WatchLogo 
               className="
-                w-6 
-                h-6 
-                sm:w-7 
-                sm:h-7 
-                md:w-8 
-                md:h-8 
+                w-[130px]
+                h-9
                 self-start
               "
+              width={130}
+              height={36}
             />
-            <h1 className="
-              text-lg 
-              sm:text-xl 
-              md:text-2xl 
-              lg:text-3xl 
-              font-poppins 
-              font-bold 
-              leading-tight 
-              tracking-wide 
-              text-left 
-              uppercase 
-              text-white
-            ">
-              WATCH
-            </h1>
           </div>
           {/* Subtitle */}
           <p className="

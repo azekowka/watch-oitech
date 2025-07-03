@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { WatchLogo } from '@/components/watch-logo';
 
 interface SidebarProps {
   className?: string;
@@ -49,9 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
     >
       {/* Logo */}
       <div className="ml-10">
-        <Image
-          src="/images/img_sidebar_logo.png"
-          alt="WATCH Logo"
+        <WatchLogo
           width={130}
           height={36}
           className="w-[130px] h-9"
