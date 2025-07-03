@@ -92,7 +92,7 @@ const HomePage: React.FC = () => {
     console.log('Added to favorites');
   };
   return (
-    <div className="flex flex-row justify-start items-center w-full bg-[linear-gradient(358deg,#37302a_0%,#191817_50%,#191817_100%)]">
+    <div className="flex flex-row justify-start items-start w-full bg-[linear-gradient(358deg,#37302a_0%,#191817_50%,#191817_100%)]">
       {/* Mobile Hamburger Menu */}
       <button 
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-[#21201e] rounded-md"
