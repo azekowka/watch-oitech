@@ -3,13 +3,17 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { WatchLogo } from '@/components/watch-logo';
+import { usePathname } from 'next/navigation';
 
 interface SidebarProps {
   className?: string;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
-  const [activeMenuItem, setActiveMenuItem] = useState('Home');
+  // Local state only for links that don't navigate (href === '#')
+  const [manualActiveItem, setManualActiveItem] = useState<string | null>(null);
+
+  const pathname = usePathname();
 
   const menuItems = [
     { name: 'Home', icon: '/images/img_film.svg', href: '/home' },
@@ -28,8 +32,19 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
     { name: 'Logout', icon: '/images/img_log_out.svg', href: '#' },
   ];
 
-  const handleMenuClick = (menuName: string) => {
-    setActiveMenuItem(menuName);
+  const handleMenuClick = (item: { name: string; href: string }) => {
+    if (item.href === '#') {
+      setManualActiveItem(item.name);
+    }
+  };
+
+  const isItemActive = (item: { name: string; href: string }) => {
+    if (item.href !== '#') {
+      // Highlight based on the current route
+      return pathname.startsWith(item.href);
+    }
+    // For placeholder links without navigation, rely on manual state
+    return manualActiveItem === item.name;
   };
 
   return (
@@ -67,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => handleMenuClick(item.name)}
+                onClick={() => handleMenuClick(item)}
                 className={`
                   flex 
                   items-center 
@@ -77,7 +92,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                   transition-all 
                   duration-200 
                   hover:bg-white/10 
-                  ${activeMenuItem === item.name ? 'bg-white/10' : ''}
+                  ${isItemActive(item) ? 'bg-white/10' : ''}
                 `.trim().replace(/\s+/g, ' ')}
                 role="menuitem"
               >
@@ -100,7 +115,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => handleMenuClick(item.name)}
+                onClick={() => handleMenuClick(item)}
                 className={`
                   flex 
                   items-center 
@@ -110,7 +125,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                   transition-all 
                   duration-200 
                   hover:bg-white/10 
-                  ${activeMenuItem === item.name ? 'bg-white/10' : ''}
+                  ${isItemActive(item) ? 'bg-white/10' : ''}
                 `.trim().replace(/\s+/g, ' ')}
                 role="menuitem"
               >
@@ -134,7 +149,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
             <Link
               key={item.name}
               href={item.href}
-              onClick={() => handleMenuClick(item.name)}
+              onClick={() => handleMenuClick(item)}
               className={`
                 flex 
                 items-center 
@@ -144,7 +159,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                 transition-all 
                 duration-200 
                 hover:bg-white/10 
-                ${activeMenuItem === item.name ? 'bg-white/10' : ''}
+                ${isItemActive(item) ? 'bg-white/10' : ''}
               `.trim().replace(/\s+/g, ' ')}
               role="menuitem"
             >
