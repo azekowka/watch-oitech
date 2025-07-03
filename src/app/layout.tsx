@@ -1,20 +1,36 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { StagewiseProvider } from "@/components/stagewise-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const inter = Inter({ 
+  subsets: ["latin", "cyrillic"],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: "Watch SPA for Oitech",
-  description: "Watch SPA for Oitech",
+  title: "Watch - Popular movies",
+  description: "Enjoy the newest movies",
+  keywords: ["movies", "cinema", "popular movies", "new movies", "trailers"],
+  authors: [{ name: "Abdulaziz Gabitov" }],
+  creator: "Abdulaziz Gabitov",
+  publisher: "Oitech.io",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    title: "Watch - Popular movies",
+    description: "Enjoy the newest movies",
+    siteName: "Watch",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Watch - Popular movies",
+    description: "Enjoy the newest movies",
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="ru" className="scroll-smooth">
+      <body className={`${inter.className} antialiased`}>
+        <StagewiseProvider />
+        <div id="root">
+          {children}
+        </div>
       </body>
     </html>
   );
