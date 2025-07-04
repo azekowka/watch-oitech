@@ -1,6 +1,6 @@
 'use client';
 
-import NotFoundPage from './404';
+// placeholder component
 
 // Simple wrapper that reuses NotFoundPage animations but with different text
 export default function ComingSoonPage() {
