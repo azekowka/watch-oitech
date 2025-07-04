@@ -70,37 +70,26 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       {/* User Actions */}
       <div className="flex justify-between items-start w-full max-w-[18%] gap-4">
         {/* Notifications */}
-        <button 
-          className="relative transition-all duration-200 hover:scale-110"
-          aria-label="Notifications"
-        >
+        <div className="flex items-center gap-4">
           <Image
             src="/images/img_bell.svg"
             alt="Notifications"
             width={24}
             height={24}
-            className="w-6 h-6 text-gray-400 hover:text-white transition-colors"
+            className="cursor-pointer"
           />
-          <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-        </button>
+        </div>
 
         {/* User Profile */}
-        <div className="flex gap-2 justify-center items-center">
-          <button 
-            className="transition-all duration-200 hover:scale-110"
-            aria-label="User profile"
-          >
-            <Image
-              src="/images/img_ellipse_757.png"
-              alt="User avatar"
-              width={32}
-              height={32}
-              className="w-8 h-8 rounded-2xl"
-            />
-          </button>
-          <span className="text-base font-poppins font-medium leading-6 text-left text-[#ffffff]">
-            Tetiana
-          </span>
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/img_ellipse_757.png"
+            alt="User avatar"
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+          <span className="text-white">Tetiana</span>
         </div>
       </div>
     </header>
