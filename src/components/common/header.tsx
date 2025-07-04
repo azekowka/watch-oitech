@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import SearchBar from './search-bar';
 
 interface HeaderProps {
   className?: string;
@@ -60,25 +62,16 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         ))}
       </nav>
 
+      {/* Search Bar */}
+      <div className="flex-1 max-w-xl mx-4">
+        <SearchBar />
+      </div>
+
       {/* User Actions */}
       <div className="flex justify-between items-start w-full max-w-[18%] gap-4">
-        {/* Search */}
-        <button 
-          className="transition-all duration-200 hover:scale-110"
-          aria-label="Search"
-        >
-          <Image
-            src="/images/img_search_white_a700.svg"
-            alt="Search"
-            width={24}
-            height={24}
-            className="w-6 h-6"
-          />
-        </button>
-
         {/* Notifications */}
         <button 
-          className="transition-all duration-200 hover:scale-110"
+          className="relative transition-all duration-200 hover:scale-110"
           aria-label="Notifications"
         >
           <Image
@@ -86,8 +79,9 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             alt="Notifications"
             width={24}
             height={24}
-            className="w-6 h-6"
+            className="w-6 h-6 text-gray-400 hover:text-white transition-colors"
           />
+          <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </button>
 
         {/* User Profile */}
