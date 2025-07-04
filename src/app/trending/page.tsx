@@ -2,38 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from '@/components/ui/button';
 import Sidebar from '@/components/common/sidebar';
 import PageWrapper from '@/components/common/page-wrapper';
 import { useMoviesStore } from '@/store/movies.store';
-import { getTrendingMovies } from '@/services/api.service';
-import { Movie } from '@/services/api.types';
 import FavoriteButton from '@/components/ui/favorite-button';
-
-interface MovieCard {
-  id: string;
-  title: string;
-  year: string;
-  genre: string;
-  image: string;
-  isFavorite: boolean;
-}
-
-interface FeaturedMovie {
-  title: string;
-  year: string;
-  genre: string;
-  duration: string;
-  rating: string;
-  description: string;
-  image: string;
-  isFavorite: boolean;
-}
 
 const WatchHomePage: React.FC = () => {
   const { trending, fetchTrendingMovies } = useMoviesStore();
   const { movies, isLoading, error } = trending;
-  const [activeNavItem, setActiveNavItem] = useState('Trending');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -43,18 +19,6 @@ const WatchHomePage: React.FC = () => {
     
     fetchTrendingMovies();
   }, [fetchTrendingMovies]);
-
-  const handleNavItemClick = (item: string) => {
-    setActiveNavItem(item);
-  };
-
-  const handleLoadMore = () => {
-    if (!isLoading && trending.page < trending.totalPages) {
-      fetchTrendingMovies(trending.page + 1).catch(error => {
-        console.error('Failed to load more movies:', error);
-      });
-    }
-  };
 
   if (error) {
     return (

@@ -6,7 +6,6 @@ import Sidebar from '@/components/common/sidebar';
 import PageWrapper from '@/components/common/page-wrapper';
 import { useMoviesStore } from '@/store/movies.store';
 import FavoriteButton from '@/components/ui/favorite-button';
-import { Movie } from '@/services/api.types';
 import Button from '@/components/ui/button';
 import Header from '@/components/common/header';
 import { useFavoritesStore } from '@/store/favorites.store';

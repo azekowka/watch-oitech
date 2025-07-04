@@ -20,7 +20,11 @@ class ApiError extends Error {
   }
 }
 
-async function handleResponse<T>(response: Response): Promise<T> {
+interface TMDBResponse {
+  status_message?: string;
+}
+
+async function handleResponse<T extends TMDBResponse>(response: Response): Promise<T> {
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({ status_message: 'Unknown error' }));
     throw new ApiError(
@@ -31,8 +35,25 @@ async function handleResponse<T>(response: Response): Promise<T> {
   return response.json();
 }
 
+interface TMDBMovie {
+  id: number;
+  title: string;
+  original_title: string;
+  overview: string;
+  poster_path: string | null;
+  backdrop_path: string | null;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
+  popularity: number;
+  genres?: Array<{ id: number; name?: string }>;
+  genre_ids?: number[];
+  adult: boolean;
+  original_language: string;
+}
+
 // Helper function to format movie data
-function formatMovieData(movie: any): Movie {
+function formatMovieData(movie: TMDBMovie): Movie {
   return {
     id: movie.id,
     title: movie.title,
@@ -50,6 +71,47 @@ function formatMovieData(movie: any): Movie {
   };
 }
 
+interface TMDBMovieList extends TMDBResponse {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: TMDBMovie[];
+}
+
+interface TMDBMovieDetails extends TMDBMovie, TMDBResponse {
+  tagline: string;
+  status: string;
+  runtime: number;
+  revenue: number;
+  budget: number;
+  credits: {
+    cast: Array<{
+      id: number;
+      name: string;
+      character: string;
+      profile_path: string | null;
+    }>;
+    crew: Array<{
+      id: number;
+      name: string;
+      job: string;
+      department: string;
+    }>;
+  };
+  videos: {
+    results: Array<{
+      id: string;
+      key: string;
+      name: string;
+      site: string;
+      type: string;
+    }>;
+  };
+  similar: {
+    results: TMDBMovie[];
+  };
+}
+
 export const api = {
   async getTrendingMovies(page: number = 1): Promise<TrendingMoviesResponse> {
     try {
@@ -57,7 +119,7 @@ export const api = {
         `${API_URL}/trending/movie/week?page=${page}`,
         { headers }
       );
-      const data = await handleResponse<any>(response);
+      const data = await handleResponse<TMDBMovieList>(response);
       
       return {
         page: data.page,
@@ -77,7 +139,7 @@ export const api = {
         `${API_URL}/movie/${id}?append_to_response=credits,videos,similar`,
         { headers }
       );
-      const data = await handleResponse<any>(response);
+      const data = await handleResponse<TMDBMovieDetails>(response);
       return {
         ...formatMovieData(data),
         tagline: data.tagline,
@@ -103,7 +165,7 @@ export const api = {
         `${API_URL}/search/movie?query=${encodeURIComponent(query)}&page=${page}`,
         { headers }
       );
-      const data = await handleResponse<any>(response);
+      const data = await handleResponse<TMDBMovieList>(response);
       
       return {
         page: data.page,

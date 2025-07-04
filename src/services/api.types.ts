@@ -48,4 +48,4 @@ export interface TrendingMoviesResponse {
   results: Movie[];
 }
 
-export interface SearchMoviesResponse extends TrendingMoviesResponse {} 
+export type SearchMoviesResponse = TrendingMoviesResponse; 

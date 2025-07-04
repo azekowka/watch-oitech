@@ -29,7 +29,7 @@ interface MoviesState {
   clearSearch: () => void;
 }
 
-export const useMoviesStore = create<MoviesState>((set, get) => ({
+export const useMoviesStore = create<MoviesState>((set) => ({
   trending: {
     movies: [],
     page: 1,
