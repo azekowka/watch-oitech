@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WATCH-OITECH
+
+*Enjoy the newest movies*
+
+
+---
+
+## Built with
+
+- ![JSON](https://img.shields.io/badge/-JSON-black?logo=json&logoColor=white)
+- ![Markdown](https://img.shields.io/badge/-Markdown-black?logo=markdown&logoColor=white)
+- ![npm](https://img.shields.io/badge/-npm-red?logo=npm&logoColor=white)
+- ![JavaScript](https://img.shields.io/badge/-JavaScript-yellow?logo=javascript&logoColor=black)
+- ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black)
+- ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white)
+- ![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?logo=eslint&logoColor=white)
+- ![YAML](https://img.shields.io/badge/-YAML-red?logo=yaml&logoColor=white)
+
+---
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Built With](#built-with)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Overview
+
+**WATCH-OITECH** - это SPA на Next.js/React для поиска фильмов и их сохранения.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+Before you begin, ensure you have met the following requirements:
+
+- [Node.js](https://nodejs.org/) (recommended v16 or later)
+- [npm/pnpm/bun/yarn](https://www.npmjs.com/) (comes with Node.js)
+- [Git](https://git-scm.com/)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/azekowka/watch-oitech.git
+   cd watch-oitech
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pnpm i
+   ```
+
+### Usage
+
+To start the development server, run:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
+```
+The app will be available at [http://localhost:3000](http://localhost:3000).
+
+To build for production:
+```bash
+pnpm build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run linter checks:
+```bash
+pnpm lint
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+watch-oitech/
+├── src/             # Application source code
+├── public/          # Static public assets
+├── package.json     # Project metadata and scripts
+├── tsconfig.json    # TypeScript configuration
+├── .eslint.config.mjs   # ESLint configuration
+├── .prettierrc   # Prettier
+├── .env.example  # Environmental variables
+└── README.md        # Project documentation
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Built With
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **TypeScript** – Strongly typed programming language that builds on JavaScript
+- **React** – A strong library for frontend
+- **Next.js** – A strong framework built on React
+- **pnpm** – Optimized package manager
+- **ESLint** – TypeScript linter
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+We welcome contributions! If you have suggestions or improvements, please open an issue or submit a pull request.
+
+1. Fork this repository.
+2. Create your feature branch: `git checkout -b feature/YourFeature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin feature/YourFeature`
+5. Open a PR.
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+---
