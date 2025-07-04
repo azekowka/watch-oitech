@@ -130,7 +130,7 @@ const HomePage: React.FC = () => {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold font-poppins leading-8 text-left text-white">
                   Trending Movies
-                </h2>
+              </h2>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={showNextMovies}
@@ -181,7 +181,7 @@ const HomePage: React.FC = () => {
                       <Link href={`/movie/${movie.id}`}>
                         <div className="relative w-full aspect-[2/3] rounded-[20px] overflow-hidden">
                           {movie.posterPath ? (
-                            <Image
+                        <Image
                               src={movie.posterPath}
                               alt={movie.title}
                               fill
@@ -197,17 +197,17 @@ const HomePage: React.FC = () => {
                             <h3 className="font-medium text-black truncate">{movie.title}</h3>
                             <p className="text-sm text-gray-600">
                               {new Date(movie.releaseDate).getFullYear()}
-                            </p>
-                          </div>
-                        </div>
+                        </p>
+                      </div>
+                    </div>
                       </Link>
                       <FavoriteButton
                         movie={movie}
                         className="absolute top-4 right-4"
                       />
-                    </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+              </div>
               )}
             </div>
 
@@ -218,7 +218,7 @@ const HomePage: React.FC = () => {
               </h2>
               <div className="flex items-center justify-center h-64 bg-gray-800/50 rounded-[20px]">
                 <div className="text-center">
-                  <Image
+                      <Image
                     src="/images/img_film.svg"
                     alt="No movies"
                     width={48}
@@ -238,11 +238,11 @@ const HomePage: React.FC = () => {
                 </h2>
                 {favorites.length > 0 && (
                   <div className="flex items-center gap-4">
-                    <button
+                      <button
                       onClick={showNextFavorites}
                       className="p-2 bg-[#6100c2] rounded-full hover:bg-purple-700 transition-colors"
                       aria-label="Show next favorites"
-                    >
+                      >
                       <svg 
                         width="24" 
                         height="24" 
@@ -259,7 +259,7 @@ const HomePage: React.FC = () => {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </button>
+                      </button>
                     <Link
                       href="/favourites"
                       className="text-sm text-purple-500 hover:text-purple-400 transition-colors whitespace-nowrap"
@@ -325,7 +325,7 @@ const HomePage: React.FC = () => {
                       Browse Movies
                     </Link>
                   </div>
-                </div>
+              </div>
               )}
             </div>
           </div>

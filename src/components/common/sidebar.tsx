@@ -19,17 +19,17 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
     { name: 'Home', icon: '/images/img_film.svg', href: '/home' },
     { name: 'Favourites', icon: '/images/img_heart.svg', href: '/favourites' },
     { name: 'Trending', icon: '/images/img_trending_up.svg', href: '/trending' },
-    { name: 'Coming soon', icon: '/images/img_calendar.svg', href: '#' },
+    { name: 'Coming soon', icon: '/images/img_calendar.svg', href: '/404' },
   ];
 
   const communityItems = [
-    { name: 'Community', icon: '/images/img_users.svg', href: '#' },
-    { name: 'Social', icon: '/images/img_vector.svg', href: '#' },
+    { name: 'Community', icon: '/images/img_users.svg', href: '/404' },
+    { name: 'Social', icon: '/images/img_vector.svg', href: '/404' },
   ];
 
   const settingsItems = [
-    { name: 'Settings', icon: '/images/img_sliders.svg', href: '#' },
-    { name: 'Logout', icon: '/images/img_log_out.svg', href: '#' },
+    { name: 'Settings', icon: '/images/img_sliders.svg', href: '/404' },
+    { name: 'Logout', icon: '/images/img_log_out.svg', href: '/404' },
   ];
 
   const handleMenuClick = (item: { name: string; href: string }) => {
