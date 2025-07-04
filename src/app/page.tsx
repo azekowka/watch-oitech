@@ -2,16 +2,19 @@
 import React from 'react';
 import Button from '@/components/ui/button';
 import { WatchLogo } from '@/components/watch-logo';
+import { useRouter } from 'next/navigation';
 
 const WelcomePage: React.FC = () => {
+  const router = useRouter();
+
   const handleLoginClick = () => {
-    // Handle login logic here
-    console.log('Login clicked');
+    router.push('/home');
   };
+
   const handleSignUpClick = () => {
-    // Handle sign up logic here
-    console.log('Sign up clicked');
+    router.push('/home');
   };
+
   return (
     <div 
       className="
