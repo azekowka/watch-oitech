@@ -117,6 +117,10 @@ watch-oitech/
 
 ---
 
+## Почему отказался от RapidAPI ?
+![image](https://github.com/user-attachments/assets/7da94176-ff6f-4638-b030-e5d45ccc8b65)
+Превысил лимит месячный, поэтому стал использовать TBDB API https://developer.themoviedb.org/docs/getting-started
+
 ## Contributing
 
 We welcome contributions! If you have suggestions or improvements, please open an issue or submit a pull request.
