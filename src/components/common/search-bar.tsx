@@ -93,6 +93,7 @@ export default function SearchBar() {
                         alt={movie.title}
                         fill
                         className="object-cover rounded"
+                        sizes="48px"
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-700 rounded flex items-center justify-center">

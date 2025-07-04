@@ -116,6 +116,7 @@ export default function MoviePage({ params }: MoviePageProps) {
                   fill
                   className="object-cover opacity-50"
                   priority
+                  sizes="100vw"
                 />
               </div>
             )}
@@ -214,6 +215,7 @@ export default function MoviePage({ params }: MoviePageProps) {
                                     alt={actor.name}
                                     fill
                                     className="object-cover"
+                                    sizes="48px"
                                   />
                                 )}
                               </div>
@@ -240,6 +242,7 @@ export default function MoviePage({ params }: MoviePageProps) {
                                     alt={movie.title}
                                     fill
                                     className="object-cover"
+                                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                                   />
                                 ) : (
                                   <div className="w-full h-full bg-gray-700 flex items-center justify-center">
