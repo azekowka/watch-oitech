@@ -65,6 +65,11 @@ Before you begin, ensure you have met the following requirements:
    ```bash
    pnpm i
    ```
+3. **Переименуйте .env.local.example на .env.local, и вставьте API key:**
+   ```bash
+    # API Provider - TBDB
+   NEXT_PUBLIC_TMDB_API_KEY= #https://developer.themoviedb.org/docs/getting-started
+   ```
 
 ### Usage
 
