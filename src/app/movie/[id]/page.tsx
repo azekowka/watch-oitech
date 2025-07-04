@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useMoviesStore } from '@/store/movies.store';
 import PageWrapper from '@/components/common/page-wrapper';
 import Sidebar from '@/components/common/sidebar';
+import FavoriteButton from '@/components/ui/favorite-button';
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p';
 
@@ -141,6 +142,10 @@ export default function MoviePage({ params }: MoviePageProps) {
                           <span className="text-gray-400">No image</span>
                         </div>
                       )}
+                      <FavoriteButton
+                        movie={currentMovie}
+                        className="absolute top-4 right-4"
+                      />
                     </div>
                   </div>
 

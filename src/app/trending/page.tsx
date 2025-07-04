@@ -6,6 +6,9 @@ import Button from '@/components/ui/button';
 import Sidebar from '@/components/common/sidebar';
 import PageWrapper from '@/components/common/page-wrapper';
 import { useMoviesStore } from '@/store/movies.store';
+import { getTrendingMovies } from '@/services/api.service';
+import { Movie } from '@/services/api.types';
+import FavoriteButton from '@/components/ui/favorite-button';
 
 interface MovieCard {
   id: string;
@@ -105,39 +108,44 @@ const WatchHomePage: React.FC = () => {
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {movies.map((movie) => (
-                  <Link
-                    key={movie.id}
-                    href={`/movie/${movie.id}`}
-                    className="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-200"
-                  >
-                    <div className="relative aspect-[2/3] w-full">
-                      {movie.posterPath ? (
-                        <Image
-                          src={movie.posterPath}
-                          alt={movie.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-gray-700 flex items-center justify-center">
-                          <span className="text-gray-400">No image</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h2 className="font-semibold text-lg mb-2 line-clamp-1">{movie.title}</h2>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-400">{new Date(movie.releaseDate).getFullYear()}</span>
-                        <div className="flex items-center">
-                          <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                          <span>{movie.voteAverage.toFixed(1)}</span>
+                  <div key={movie.id} className="relative group">
+                    <Link
+                      href={`/movie/${movie.id}`}
+                      className="bg-gray-800 rounded-lg overflow-hidden hover:scale-105 transition-transform duration-200"
+                    >
+                      <div className="relative aspect-[2/3] w-full">
+                        {movie.posterPath ? (
+                          <Image
+                            src={movie.posterPath}
+                            alt={movie.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 20vw"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+                            <span className="text-gray-400">No image</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-4">
+                        <h2 className="font-semibold text-lg mb-2 line-clamp-1">{movie.title}</h2>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-400">{new Date(movie.releaseDate).getFullYear()}</span>
+                          <div className="flex items-center">
+                            <svg className="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span>{movie.voteAverage.toFixed(1)}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                    <FavoriteButton
+                      movie={movie}
+                      className="absolute top-4 right-4"
+                    />
+                  </div>
                 ))}
               </div>
             )}
